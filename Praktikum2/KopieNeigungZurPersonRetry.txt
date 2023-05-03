@@ -1,0 +1,220 @@
+     2[acc/mg],      5[acc/mg],   1019[acc/mg],    140[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -4[acc/mg],    -27[acc/mg],   1000[acc/mg],   -478[mag/mgauss],    580[mag/mgauss],   -115[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -6[acc/mg],    -27[acc/mg],    999[acc/mg],   -477[mag/mgauss],    570[mag/mgauss],   -111[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     0[acc/mg],      4[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1002[acc/mg],   -483[mag/mgauss],    579[mag/mgauss],    -97[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      6[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1001[acc/mg],   -484[mag/mgauss],    577[mag/mgauss],   -105[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      4[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1006[acc/mg],   -477[mag/mgauss],    573[mag/mgauss],   -111[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      4[acc/mg],   1019[acc/mg],    140[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1003[acc/mg],   -480[mag/mgauss],    577[mag/mgauss],   -120[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      4[acc/mg],   1019[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1005[acc/mg],   -486[mag/mgauss],    589[mag/mgauss],   -111[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      4[acc/mg],   1020[acc/mg],    140[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1003[acc/mg],   -483[mag/mgauss],    571[mag/mgauss],   -112[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      4[acc/mg],   1019[acc/mg],    140[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -6[acc/mg],    -27[acc/mg],   1000[acc/mg],   -475[mag/mgauss],    579[mag/mgauss],   -118[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1019[acc/mg],     70[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -3[acc/mg],    -27[acc/mg],   1002[acc/mg],   -484[mag/mgauss],    580[mag/mgauss],   -111[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1019[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1001[acc/mg],   -484[mag/mgauss],    580[mag/mgauss],   -114[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      5[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -28[acc/mg],   1006[acc/mg],   -478[mag/mgauss],    592[mag/mgauss],   -112[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],    148[acc/mg],   1008[acc/mg],  14630[gyro/mdps],    560[gyro/mdps],      0[gyro/mdps],    136[acc/mg],    -27[acc/mg],    993[acc/mg],   -472[mag/mgauss],    499[mag/mgauss],   -108[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -8[acc/mg],    469[acc/mg],    903[acc/mg],  13650[gyro/mdps],    140[gyro/mdps],    700[gyro/mdps],    458[acc/mg],    -24[acc/mg],    882[acc/mg],   -477[mag/mgauss],    345[mag/mgauss],    -58[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -8[acc/mg],    667[acc/mg],    769[acc/mg],   1960[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],    650[acc/mg],    -24[acc/mg],    751[acc/mg],   -477[mag/mgauss],    255[mag/mgauss],      4[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -8[acc/mg],    663[acc/mg],    771[acc/mg],   -210[gyro/mdps],      0[gyro/mdps],    910[gyro/mdps],    646[acc/mg],    -25[acc/mg],    748[acc/mg],   -480[mag/mgauss],    249[mag/mgauss],      4[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -7[acc/mg],    663[acc/mg],    768[acc/mg],   -840[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],    646[acc/mg],    -27[acc/mg],    754[acc/mg],   -480[mag/mgauss],    250[mag/mgauss],      9[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -7[acc/mg],    664[acc/mg],    771[acc/mg],    280[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],    646[acc/mg],    -25[acc/mg],    756[acc/mg],   -477[mag/mgauss],    249[mag/mgauss],      6[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -7[acc/mg],    664[acc/mg],    768[acc/mg],   -700[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],    648[acc/mg],    -26[acc/mg],    750[acc/mg],   -478[mag/mgauss],    258[mag/mgauss],     -1[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -9[acc/mg],    662[acc/mg],    775[acc/mg],   -210[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],    644[acc/mg],    -26[acc/mg],    759[acc/mg],   -474[mag/mgauss],    246[mag/mgauss],     -3[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -7[acc/mg],    666[acc/mg],    768[acc/mg],    490[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],    649[acc/mg],    -27[acc/mg],    752[acc/mg],   -475[mag/mgauss],    250[mag/mgauss],     13[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -7[acc/mg],    665[acc/mg],    766[acc/mg],      0[gyro/mdps],    280[gyro/mdps],    980[gyro/mdps],    649[acc/mg],    -25[acc/mg],    751[acc/mg],   -471[mag/mgauss],    253[mag/mgauss],      4[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -7[acc/mg],    666[acc/mg],    767[acc/mg],    840[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],    648[acc/mg],    -26[acc/mg],    752[acc/mg],   -472[mag/mgauss],    253[mag/mgauss],     10[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -6[acc/mg],    669[acc/mg],    763[acc/mg],   1050[gyro/mdps],   -140[gyro/mdps],    910[gyro/mdps],    653[acc/mg],    -30[acc/mg],    747[acc/mg],   -477[mag/mgauss],    250[mag/mgauss],      9[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -8[acc/mg],    670[acc/mg],    763[acc/mg],    140[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],    652[acc/mg],    -26[acc/mg],    748[acc/mg],   -466[mag/mgauss],    241[mag/mgauss],      6[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -6[acc/mg],    667[acc/mg],    767[acc/mg],    700[gyro/mdps],    210[gyro/mdps],    910[gyro/mdps],    650[acc/mg],    -26[acc/mg],    751[acc/mg],   -475[mag/mgauss],    243[mag/mgauss],     10[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -7[acc/mg],    666[acc/mg],    769[acc/mg],   -140[gyro/mdps],    210[gyro/mdps],    980[gyro/mdps],    650[acc/mg],    -26[acc/mg],    753[acc/mg],   -478[mag/mgauss],    246[mag/mgauss],      4[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -6[acc/mg],    665[acc/mg],    769[acc/mg],   -280[gyro/mdps],   -140[gyro/mdps],    980[gyro/mdps],    649[acc/mg],    -26[acc/mg],    754[acc/mg],   -475[mag/mgauss],    247[mag/mgauss],      4[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -8[acc/mg],    670[acc/mg],    765[acc/mg],   1260[gyro/mdps],    210[gyro/mdps],    980[gyro/mdps],    652[acc/mg],    -26[acc/mg],    749[acc/mg],   -478[mag/mgauss],    241[mag/mgauss],     10[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -9[acc/mg],    667[acc/mg],    764[acc/mg],    770[gyro/mdps],    280[gyro/mdps],    910[gyro/mdps],    650[acc/mg],    -26[acc/mg],    748[acc/mg],   -483[mag/mgauss],    249[mag/mgauss],     15[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -8[acc/mg],    665[acc/mg],    769[acc/mg],    140[gyro/mdps],    210[gyro/mdps],    980[gyro/mdps],    647[acc/mg],    -25[acc/mg],    753[acc/mg],   -472[mag/mgauss],    252[mag/mgauss],     10[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -8[acc/mg],    661[acc/mg],    773[acc/mg],   -350[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],    645[acc/mg],    -27[acc/mg],    757[acc/mg],   -474[mag/mgauss],    244[mag/mgauss],      7[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -6[acc/mg],    558[acc/mg],    851[acc/mg],  -9590[gyro/mdps],    140[gyro/mdps],   1050[gyro/mdps],    540[acc/mg],    -26[acc/mg],    833[acc/mg],   -471[mag/mgauss],    303[mag/mgauss],    -24[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],    213[acc/mg],   1003[acc/mg], -15680[gyro/mdps],   -840[gyro/mdps],   1330[gyro/mdps],    200[acc/mg],    -30[acc/mg],    984[acc/mg],   -474[mag/mgauss],    474[mag/mgauss],   -111[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      4[acc/mg],   1018[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -28[acc/mg],   1004[acc/mg],   -478[mag/mgauss],    594[mag/mgauss],   -109[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      5[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1003[acc/mg],   -477[mag/mgauss],    576[mag/mgauss],   -106[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1020[acc/mg],    140[gyro/mdps],      0[gyro/mdps],    910[gyro/mdps],     -4[acc/mg],    -28[acc/mg],   1000[acc/mg],   -474[mag/mgauss],    580[mag/mgauss],   -106[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1019[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1002[acc/mg],   -475[mag/mgauss],    582[mag/mgauss],   -111[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      4[acc/mg],   1021[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1004[acc/mg],   -474[mag/mgauss],    574[mag/mgauss],   -100[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Retry-------------------------------------------------------------------------------------------------------------------------------------------
+     2[acc/mg],      5[acc/mg],   1020[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -27[acc/mg],   1002[acc/mg],   -484[mag/mgauss],    583[mag/mgauss],   -109[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1020[acc/mg],    140[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1002[acc/mg],   -483[mag/mgauss],    586[mag/mgauss],   -114[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      5[acc/mg],   1020[acc/mg],    140[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -28[acc/mg],   1001[acc/mg],   -475[mag/mgauss],    585[mag/mgauss],   -109[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      4[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1003[acc/mg],   -478[mag/mgauss],    582[mag/mgauss],   -103[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      5[acc/mg],   1018[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -6[acc/mg],    -28[acc/mg],   1003[acc/mg],   -481[mag/mgauss],    576[mag/mgauss],   -106[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1019[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -26[acc/mg],   1002[acc/mg],   -477[mag/mgauss],    583[mag/mgauss],   -109[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      3[acc/mg],   1021[acc/mg],    280[gyro/mdps],      0[gyro/mdps],    910[gyro/mdps],     -3[acc/mg],    -28[acc/mg],   1007[acc/mg],   -481[mag/mgauss],    583[mag/mgauss],   -106[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      6[acc/mg],   1020[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -27[acc/mg],   1002[acc/mg],   -475[mag/mgauss],    588[mag/mgauss],   -102[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      4[acc/mg],   1020[acc/mg],    140[gyro/mdps],    140[gyro/mdps],   1050[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1003[acc/mg],   -489[mag/mgauss],    585[mag/mgauss],   -114[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     3[acc/mg],      5[acc/mg],   1020[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -27[acc/mg],   1001[acc/mg],   -472[mag/mgauss],    582[mag/mgauss],   -108[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      6[acc/mg],   1020[acc/mg],    210[gyro/mdps],      0[gyro/mdps],    980[gyro/mdps],     -2[acc/mg],    -27[acc/mg],   1002[acc/mg],   -489[mag/mgauss],    589[mag/mgauss],   -114[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    -1[acc/mg],      6[acc/mg],   1020[acc/mg],    140[gyro/mdps],   -280[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -25[acc/mg],   1002[acc/mg],   -480[mag/mgauss],    583[mag/mgauss],    -99[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      6[acc/mg],   1021[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1001[acc/mg],   -478[mag/mgauss],    585[mag/mgauss],   -105[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     3[acc/mg],      5[acc/mg],   1018[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1002[acc/mg],   -474[mag/mgauss],    582[mag/mgauss],   -105[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      6[acc/mg],   1019[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -28[acc/mg],   1002[acc/mg],   -484[mag/mgauss],    577[mag/mgauss],   -105[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      6[acc/mg],   1019[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -4[acc/mg],    -28[acc/mg],   1002[acc/mg],   -483[mag/mgauss],    574[mag/mgauss],   -108[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      6[acc/mg],   1019[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -5[acc/mg],    -26[acc/mg],   1002[acc/mg],   -478[mag/mgauss],    588[mag/mgauss],   -103[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      7[acc/mg],   1020[acc/mg],    280[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -3[acc/mg],    -29[acc/mg],   1001[acc/mg],   -475[mag/mgauss],    579[mag/mgauss],   -105[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      7[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -4[acc/mg],    -26[acc/mg],   1001[acc/mg],   -475[mag/mgauss],    574[mag/mgauss],   -108[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     6[acc/mg],     24[acc/mg],   1029[acc/mg],      0[gyro/mdps],    420[gyro/mdps],    910[gyro/mdps],     11[acc/mg],    -32[acc/mg],   1012[acc/mg],   -468[mag/mgauss],    564[mag/mgauss],   -105[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   -11[acc/mg],    303[acc/mg],    957[acc/mg],  10220[gyro/mdps],   1050[gyro/mdps],    630[gyro/mdps],    291[acc/mg],    -17[acc/mg],    941[acc/mg],   -478[mag/mgauss],    427[mag/mgauss],    -85[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   -10[acc/mg],    537[acc/mg],    865[acc/mg],   9310[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],    524[acc/mg],    -21[acc/mg],    845[acc/mg],   -472[mag/mgauss],    313[mag/mgauss],    -31[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   -11[acc/mg],    650[acc/mg],    783[acc/mg],   3150[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],    633[acc/mg],    -25[acc/mg],    768[acc/mg],   -474[mag/mgauss],    264[mag/mgauss],      1[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   -12[acc/mg],    674[acc/mg],    762[acc/mg],    420[gyro/mdps],    140[gyro/mdps],    910[gyro/mdps],    658[acc/mg],    -22[acc/mg],    746[acc/mg],   -463[mag/mgauss],    249[mag/mgauss],     12[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   -10[acc/mg],    657[acc/mg],    770[acc/mg],  -6160[gyro/mdps],    280[gyro/mdps],    980[gyro/mdps],    641[acc/mg],    -21[acc/mg],    754[acc/mg],   -468[mag/mgauss],    261[mag/mgauss],      4[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   -13[acc/mg],    427[acc/mg],    920[acc/mg], -11970[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],    412[acc/mg],    -19[acc/mg],    907[acc/mg],   -471[mag/mgauss],    370[mag/mgauss],    -61[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     4[acc/mg],     84[acc/mg],   1021[acc/mg],  -7140[gyro/mdps],   -140[gyro/mdps],   1050[gyro/mdps],     72[acc/mg],    -31[acc/mg],   1002[acc/mg],   -471[mag/mgauss],    528[mag/mgauss],    -97[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     1[acc/mg],      5[acc/mg],   1021[acc/mg],     70[gyro/mdps],     70[gyro/mdps],    910[gyro/mdps],     -3[acc/mg],    -29[acc/mg],   1001[acc/mg],   -471[mag/mgauss],    573[mag/mgauss],   -103[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      4[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -3[acc/mg],    -29[acc/mg],   1003[acc/mg],   -471[mag/mgauss],    577[mag/mgauss],    -99[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     2[acc/mg],      4[acc/mg],   1020[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    910[gyro/mdps],     -5[acc/mg],    -29[acc/mg],   1002[acc/mg],   -465[mag/mgauss],    577[mag/mgauss],   -103[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     3[acc/mg],      6[acc/mg],   1020[acc/mg],    210[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -3[acc/mg],    -30[acc/mg],   1005[acc/mg],   -469[mag/mgauss],    577[mag/mgauss],   -109[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     4[acc/mg],      5[acc/mg],   1019[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    910[gyro/mdps],     -5[acc/mg],    -28[acc/mg],   1003[acc/mg],   -469[mag/mgauss],    577[mag/mgauss],   -102[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     3[acc/mg],      5[acc/mg],   1019[acc/mg],    280[gyro/mdps],     70[gyro/mdps],    980[gyro/mdps],     -4[acc/mg],    -31[acc/mg],   1000[acc/mg],   -474[mag/mgauss],    571[mag/mgauss],   -114[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     5[acc/mg],      6[acc/mg],   1019[acc/mg],    210[gyro/mdps],    140[gyro/mdps],    910[gyro/mdps],     -5[acc/mg],    -29[acc/mg],   1005[acc/mg],   -474[mag/mgauss],    580[mag/mgauss],   -105[mag/mgauss]
+---
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
