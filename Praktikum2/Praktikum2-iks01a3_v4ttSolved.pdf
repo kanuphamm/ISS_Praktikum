@@ -1,0 +1,1448 @@
+\documentclass[11pt]{article}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+
+    \usepackage{iftex}
+    \ifPDFTeX
+        \usepackage[T1]{fontenc}
+        \IfFileExists{alphabeta.sty}{
+              \usepackage{alphabeta}
+          }{
+              \usepackage[mathletters]{ucs}
+              \usepackage[utf8x]{inputenc}
+          }
+    \else
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+    \fi
+
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{array}     % table support for pandoc >= 2.11.3
+    \usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+
+
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Praktikum2-iks01a3\_v4tt}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb.
+    \makeatletter
+        \newbox\Wrappedcontinuationbox
+        \newbox\Wrappedvisiblespacebox
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+        \newcommand*\Wrappedcontinuationindent {3ex }
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+        % Take advantage of the already applied Pygments mark-up to insert
+        % potential linebreaks for TeX processing.
+        %        {, <, #, %, $, ' and ": go to next line.
+        %        _, }, ^, &, >, - and ~: stay at end of broken line.
+        % Use of \textquotesingle for straight quote.
+        \newcommand*\Wrappedbreaksatspecials {%
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+        }
+        % Some characters . , ; ? ! / are not pygmentized.
+        % This macro makes them "active" and they will insert potential linebreaks
+        \newcommand*\Wrappedbreaksatpunct {%
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+            \catcode`\.\active
+            \catcode`\,\active
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active
+            \lccode`\~`\~
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{praktikum-2-intelligente-sensortsysteme}{%
+\section{Praktikum 2 Intelligente
+Sensortsysteme}\label{praktikum-2-intelligente-sensortsysteme}}
+
+Tim Tiedemann, Thomas Lehmann, Tobias de Gasperis
+
+    \hypertarget{einfache-intelligente-sensoren-und-datenvorverarbeitung}{%
+\section{Einfache intelligente Sensoren und
+Datenvorverarbeitung}\label{einfache-intelligente-sensoren-und-datenvorverarbeitung}}
+
+Im Praktikum 2 geht es zum einen um die Eigenschaften eines ersten
+einfachen intelligenten Sensors, sowie eine erste Datenvorverarbeitung
+mittels Mikrocontroller.
+
+Lesen Sie sich die Aufgaben gut durch. Sollten Sie eine Aufgabe nicht
+lösen können, so beschreiben Sie zumindest, wie weit Sie gekommen sind
+und auf welche Weise Sie vorgegangen sind.
+
+Die Aufgaben sind direkt hier als Protokoll zu bearbeiten. Das
+abgegebene Notebook soll ausführbar sein. Daneben ist der PDF-Export des
+Notebook mit abzugeben.
+
+    Autoren des Protokolls: Khanh Nhu Pham, Berivan Elmas
+
+    \hypertarget{hintergrund}{%
+\section{Hintergrund}\label{hintergrund}}
+
+Bewegungssensoren sind inzwischen trotz ihrer Komplexität Massenware und
+finden sich in verschiedenen Anwendungen. Als Beispiele sollen in diesem
+Praktikum ein Joystick und eine Alarmanlage auf Basis von
+Bewegungssensoren als Sensorsystem entwickelt werden. Dazu soll zunächst
+das Verhalten dieser Sensoren und die Kommunikation mit komplexeren
+Sensoren untersucht werden.
+
+Oftmals ergibt sich die Schwierigkeit, dass Daten nicht direkt
+verarbeitet werden können, sondern zwischengespeichert und später
+übertragen werden. Die dabei entstehenden Probleme und Lösungsansätze
+sollen ebenfalls untersucht werden.
+
+Im Rahmen der folgenden Praktika sollen Bewegungsmuster oder Phasen der
+Bewegung automatisch erkannt und klassifiziert werden (Stichwort
+Gestenerkennung). Die hierfür benötigten Rohdaten für die nachfolgenden
+Analysen sollen hier gesammelt werden.
+
+    \hypertarget{vorbereitungsaufgaben}{%
+\section{Vorbereitungsaufgaben}\label{vorbereitungsaufgaben}}
+
+\hypertarget{beschleunigungs--und-gyroskop-sensoren}{%
+\subsection{Beschleunigungs- und
+Gyroskop-Sensoren}\label{beschleunigungs--und-gyroskop-sensoren}}
+
+Beschaffen Sie sich die Datenblätter zu den Sensoren ST LSM6DS0,
+LIS2DW12 und LIS2MDL. Welche Quellen für Datenblätter kennen Sie und
+welche haben Sie warum gewählt?
+
+\textbf{Datenblätter}
+
+    \begin{itemize}
+\tightlist
+\item
+  Es wurden die Herstellerseiten benutzt, da diese als die
+  zuverlässigsten Quellen gewertet wurden.
+\end{itemize}
+
+    Um was für Sensoren handelt es sich jeweils? Beschreiben Sie kurz die
+Funktionsweise und wichtigsten technischen Parameter, die für die
+Praktikumsaufgabe relevant sein könnten!
+
+\textbf{Funktionsweise}
+
+    \begin{itemize}
+\tightlist
+\item
+  Der LSM6DS0 ist ein 3D Beschleunigungsmesser und 3D Gyroskop, der eine
+  genaue Erfassung der Beschleunigung und des Drehwinkels in allen drei
+  Raumrichtungen ermöglicht.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Analog supply voltage: 1.71 V to 3.6 V
+  \item
+    ±2/±4/±8/±16 g full scale
+  \item
+    ±245/±500/±2000 dps full scale
+  \item
+    SPI/I2C serial interface
+  \end{itemize}
+\item
+  Der LIS2DW12 ist ein 3-Achsen-Beschleunigungsmesser, der eine hohe
+  Genauigkeit und einen geringeren Stromverbrauch aufweist.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Supply voltage, 1.62 V to 3.6 V
+  \item
+    ±2g/±4g/±8g/±16g full scale
+  \item
+    High-speed I²C/SPI digital output interface
+  \end{itemize}
+\item
+  Der LIS2MDL ist ein Magnetfeld-Sensor, welcher so konfiguriert werden
+  kann, dass er durch Interrupts die Erkennung eines Magnetfeldes
+  anzeigt signalisiert. Die Stärke des Magnetfeldes ist proportional zur
+  Ausgangsspannung.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ±50 gauss magnetic dynamic range
+  \item
+    16-bit data output
+  \item
+    SPI/I2C serial interfaces
+  \item
+    Analog supply voltage 1.71 V to 3.6 V
+  \end{itemize}
+\end{itemize}
+
+    Über welche Kommunikationsschnittstelle(n) kann/können Messwerte der
+Sensoren (s.o.) ausgelesen werden. Wird/werden diese vom Mikrocontroller
+auf dem Nucleo-Board unterstützt? Können dafür bestimmte
+Funktionseinheiten innerhalb des Mikrocontrollers genutzt werden?
+
+\textbf{Schnittstellen}
+
+    \begin{itemize}
+\tightlist
+\item
+  Die Schnittstellen der Sensoren sind I2C und SPI, beides wird auch vom
+  Mikrocontroller unterstützt.
+\end{itemize}
+
+    \hypertarget{einarbeitung-in-den-demo-code}{%
+\subsection{Einarbeitung in den
+Demo-Code}\label{einarbeitung-in-den-demo-code}}
+
+Analysieren Sie das über Git/EMIL/MS-Teams zur Verfügung gestellte
+Mikrocontroller-Projekt. Was wird da gemacht? Wo findet ein Zugriff auf
+die Sensoren statt? Wo die initiale Konfiguration der
+Mikrocontroller-internen Komponenten? An welcher Stelle werden
+vermutlich Zugriffe auf das ``whoami''-Register durchgeführt?
+
+\begin{itemize}
+\tightlist
+\item
+  Die Sensoren werden eingeschaltet und identifiziert. Die Werte der
+  Achsen werden ausgewertet und ausgegeben.
+\item
+  Die HW Zugriffe finden statt in
+  ITS\_BRD\_Sensorik/Driver/BSP/Components.
+\item
+  Die who\_am\_i Register werden in den jeweiligen \_reg.c Dateien (in
+  ITS\_BRD\_Sensorik/Driver/BSP/Components) ausgelesen. Der Zugriff
+  erfolgt während der Initialisierung der jeweiligen Sensoren.
+\end{itemize}
+
+Insbesondere: Welche Kommunikationsschnittstelle verwenden die
+High-Level-Schnittstellen zu den Sensoren und an welcher Stelle wird
+diese konfiguriert? Somit auch an welchen Pins des Controllers sind die
+Sensoren angeschlossen?
+
+\begin{itemize}
+\tightlist
+\item
+  C:\Users\simge\ISSP\ITS\_BRD\_ISSP\ITS-BRD\ITS\_BRD\_Sensorik\Core\Src\stm32f4xx\_nucleo\_bus.c
+  Z.433 ??
+\end{itemize}
+
+Optional: Verfolgen Sie im Praktikum per Debugger die Ausführung der
+Zugriffsfunktionen durch die Schichten der Bibliothek. Wo erfolgt
+wirklich der Zugriff auf den Kommunikationskanal?
+
+\textbf{Analyseergebnis}
+
+    \begin{itemize}
+\tightlist
+\item
+  Der Zugriff erfolgt auf den unteren Schichten in der Datei
+  {[}\ldots{]}\_nucleo\_bus.c, wo zunächst die Konfiguration der Pins
+  stattfindet
+\end{itemize}
+
+    \hypertarget{im-labor}{%
+\section{Im Labor}\label{im-labor}}
+
+    \hypertarget{beschleunigungs--und-gyroskop-sensoren-die-uxfcblichen-imu-spielereien}{%
+\subsection{Beschleunigungs- und Gyroskop-Sensoren -- die üblichen
+IMU-Spielereien}\label{beschleunigungs--und-gyroskop-sensoren-die-uxfcblichen-imu-spielereien}}
+
+\hypertarget{analyse-des-sensorverhaltens}{%
+\subsubsection{Analyse des
+Sensorverhaltens}\label{analyse-des-sensorverhaltens}}
+
+Modifizieren Sie das gegebene Microkontroller-Programm derart, dass die
+Daten in einem CSV- Format ausgegeben werden (Trennung der Dimensionen
+per Komma oder Tabulator, ggf. konfigurierbar). Es reichen hier die
+Daten vom LSM6DS0, LIS2DW12 und LIS2MDL (also insgesamt 12 Werte je
+Zeile). Fügen Sie einen Codeauszug (wenige Zeilen) hier hinzu.
+
+\textbf{Code-Sample}
+
+    \begin{verbatim}
+char* lineOfData = malloc(SIZE_OF_STRING*4);
+char s1[SIZE_OF_STRING] = {0};
+char s2[SIZE_OF_STRING] = {0};
+char s3[SIZE_OF_STRING] = {0};
+char s4[SIZE_OF_STRING] = {0};
+
+[...]
+
+while(1){
+    acc_gyro.get_a_axes(axes);
+    sprintf(s1, "%6d[acc/mg], %6d[acc/mg], %6d[acc/mg],", axes[0], axes[1], axes[2]); 
+    acc_gyro.get_g_axes(axes);
+    sprintf(s2, "%6d[gyro/mg], %6d[gyro/mg], %6d[gyro/mg],", axes[0], axes[1], axes[2]);
+
+    accelerometer.get_a_axes(axes);
+    sprintf(s3, "%6d[acc/mg], %6d[acc/mg], %6d[acc/mg],", axes[0], axes[1], axes[2]);
+    
+    magnetometer.get_m_axes(axes);
+    sprintf(s4, "%6d[mag/mgauss], %6d[mag/mgauss], %6d[mag/mgauss]", axes[0], axes[1], axes[2]);
+    sprintf(lineOfData, "%s, %s, %s, %s", s1, s2, s3, s4);
+    printf("%s\r\n", lineOfData);
+    lcdPrintlnS(lineOfData);
+    
+    [...]
+}
+\end{verbatim}
+
+    Werten Sie die ausgegebenen Beschleunigungs- und Gyroskopwerte aus: In
+welchem Bereich liegen diese, wenn das Board ruhig auf dem Tisch liegt?
+Ist der Bereich bei allen drei Achsen X/Y/Z jeweils gleich? Wie ändert
+sich die Ausgabe, wenn Sie das Board geneigt halten? Fügen Sie diesem
+Protokoll geeignete Plots von aufgezeichneten Daten hinzu, mit drei
+Achsen x/y/z von einem (oder mehreren) der Sensoren, aufgenommen während
+einer Bewegung wie z.B. ``Ruhelage auf dem Tisch -- Bewegung -- Ruhelage
+auf dem Tisch''. Datendateien sind ebenfals abzugeben, so dass das
+Notebook ausführbar bleibt.
+
+\textbf{Datenanalyse}
+
+\begin{itemize}
+\tightlist
+\item
+  Über 32 Samples lagen die Werte in der Ruhelage bei
+
+  \begin{itemize}
+  \tightlist
+  \item
+    DSOa\_x: zwischen 1 bis 3, Schnitt = 2,25
+  \item
+    DSOa\_y: zwischen 3 bis 5, Schnitt = 4,41
+  \item
+    DSOa\_z: zwischen 1018 und 1020, Schnitt = 1019,41
+  \item
+    DSOg\_x: entweder 210 oder 140, Schnitt = 194,69
+  \item
+    DSOg\_y: entweder 70 oder 140, Schnitt = 94,06
+  \item
+    DSOg\_z: entweder 910 oder 980, Schnitt = 929,69
+  \item
+    W12a\_x: zwischen -2 und -4, Schnitt = -3,03
+  \item
+    W12a\_y: zwischen -27 und -33, Schnitt = -29,91
+  \item
+    W12a\_z: zwischen 999 und 1006, Schnitt = 1001,47
+  \item
+    MDLm\_x: zwischen -460 und -477, Schnitt = -468,16
+  \item
+    MDLm\_y: zwischen 565 und 588, Schnitt = 572,50
+  \item
+    MDLm\_z: zwischen -99 und -117, Schnitt = -116,09
+  \end{itemize}
+\end{itemize}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits} \PY{k+kn}{import} \PY{n}{mplot3d}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{k+kn}{import} \PY{n+nn}{csv}
+
+\PY{k}{def} \PY{n+nf}{convert\PYZus{}colKey}\PY{p}{(} \PY{n}{colKey} \PY{p}{)}\PY{p}{:}
+    \PY{n}{col} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+    \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{colKey}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        \PY{n}{keyAscii} \PY{o}{=} \PY{n}{key}\PY{o}{.}\PY{n}{encode}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ascii}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ignore}\PY{l+s+s1}{\PYZsq{}} \PY{p}{)}\PY{o}{.}\PY{n}{decode}\PY{p}{(}\PY{p}{)}
+        \PY{n}{valueAscii} \PY{o}{=} \PY{n}{value}\PY{o}{.}\PY{n}{encode}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ascii}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ignore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{decode}\PY{p}{(}\PY{p}{)}
+        \PY{n}{col}\PY{p}{[} \PY{n}{keyAscii} \PY{p}{]} \PY{o}{=} \PY{n}{valueAscii}
+    \PY{k}{return} \PY{n}{col}
+
+\PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+\PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{axes}\PY{p}{(}\PY{n}{projection}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{DSOa\PYZus{}x} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{DSOa\PYZus{}y} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{DSOa\PYZus{}z} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{n}{genData} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daten45NeigungZurPerson.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{file} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{DictReader}\PY{p}{(}\PY{n}{genData}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+\PY{k}{for} \PY{n}{column} \PY{o+ow}{in} \PY{n}{file}\PY{p}{:}
+    \PY{n}{column} \PY{o}{=} \PY{n}{convert\PYZus{}colKey}\PY{p}{(}\PY{n}{column}\PY{p}{)}
+    \PY{n}{DSOa\PYZus{}x}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DSOax}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{DSOa\PYZus{}y}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DSOay}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{DSOa\PYZus{}z}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DSOaz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    
+\PY{n}{DSOa\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{DSOa\PYZus{}x}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{DSOa\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{DSOa\PYZus{}y}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{DSOa\PYZus{}z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{DSOa\PYZus{}z}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}Messpunkte plotten}
+\PY{n}{ax}\PY{o}{.}\PY{n}{plot3D}\PY{p}{(}\PY{n}{DSOa\PYZus{}x}\PY{p}{,} \PY{n}{DSOa\PYZus{}y}\PY{p}{,} \PY{n}{DSOa\PYZus{}z}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}Achsen beschriften}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x[mg]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y[mg]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}zlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{z[mg]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, 'z[mg]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+\PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{axes}\PY{p}{(}\PY{n}{projection}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{genData} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daten45NeigungZurPerson.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{file} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{DictReader}\PY{p}{(}\PY{n}{genData}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{DSOg\PYZus{}x} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{DSOg\PYZus{}y} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{DSOg\PYZus{}z} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{column} \PY{o+ow}{in} \PY{n}{file}\PY{p}{:}
+    
+    \PY{n}{column} \PY{o}{=} \PY{n}{convert\PYZus{}colKey}\PY{p}{(}\PY{n}{column}\PY{p}{)}
+    \PY{n}{DSOg\PYZus{}x}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DSOgx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{DSOg\PYZus{}y}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DSOgy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{DSOg\PYZus{}z}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DSOgz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    
+\PY{n}{DSOg\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{DSOg\PYZus{}x}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{DSOg\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{DSOg\PYZus{}y}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{DSOg\PYZus{}z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{DSOg\PYZus{}z}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+
+\PY{n}{ax}\PY{o}{.}\PY{n}{plot3D}\PY{p}{(}\PY{n}{DSOg\PYZus{}x}\PY{p}{,} \PY{n}{DSOg\PYZus{}y}\PY{p}{,} \PY{n}{DSOg\PYZus{}z}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x[mdps]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y[mdps]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}zlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{z[mdps]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, 'z[mdps]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+\PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{axes}\PY{p}{(}\PY{n}{projection}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{genData} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daten45NeigungZurPerson.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{file} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{DictReader}\PY{p}{(}\PY{n}{genData}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{}hier muss noch angepasst werden}
+\PY{n}{W12a\PYZus{}x} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{W12a\PYZus{}y} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{W12a\PYZus{}z} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{column} \PY{o+ow}{in} \PY{n}{file}\PY{p}{:}
+    \PY{n}{column} \PY{o}{=} \PY{n}{convert\PYZus{}colKey}\PY{p}{(}\PY{n}{column}\PY{p}{)}
+    \PY{n}{W12a\PYZus{}x}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W12ax}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{W12a\PYZus{}y}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W12ay}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{W12a\PYZus{}z}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W12az}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    
+\PY{n}{W12a\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{W12a\PYZus{}x}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{W12a\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{W12a\PYZus{}y}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{W12a\PYZus{}z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{W12a\PYZus{}z}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+
+\PY{n}{ax}\PY{o}{.}\PY{n}{plot3D}\PY{p}{(}\PY{n}{W12a\PYZus{}x}\PY{p}{,} \PY{n}{W12a\PYZus{}y}\PY{p}{,} \PY{n}{W12a\PYZus{}z}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x[mg]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y[mg]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}zlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{z[mg]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, 'z[mg]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+\PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{axes}\PY{p}{(}\PY{n}{projection}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{genData} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daten45NeigungZurPerson.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{file} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{DictReader}\PY{p}{(}\PY{n}{genData}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{MDLm\PYZus{}x} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{MDLm\PYZus{}y} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+\PY{n}{MDLm\PYZus{}z} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{column} \PY{o+ow}{in} \PY{n}{file}\PY{p}{:}
+    \PY{n}{column} \PY{o}{=} \PY{n}{convert\PYZus{}colKey}\PY{p}{(}\PY{n}{column}\PY{p}{)}
+    \PY{n}{MDLm\PYZus{}x}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MDLmx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{MDLm\PYZus{}y}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MDLmy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    \PY{n}{MDLm\PYZus{}z}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{column}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MDLmz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+    
+\PY{n}{MDLm\PYZus{}x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{MDLm\PYZus{}x}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{MDLm\PYZus{}y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{MDLm\PYZus{}y}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+\PY{n}{MDLm\PYZus{}z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{MDLm\PYZus{}z}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n+nb}{int}\PY{p}{)}
+
+\PY{n}{ax}\PY{o}{.}\PY{n}{plot3D}\PY{p}{(}\PY{n}{MDLm\PYZus{}x}\PY{p}{,} \PY{n}{MDLm\PYZus{}y}\PY{p}{,} \PY{n}{MDLm\PYZus{}z}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x[mgauss]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y[mgauss]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}zlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{z[mgauss]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+Text(0.5, 0, 'z[mgauss]')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Überlegen Sie, wie Sie Beschleunigungswerte generieren könnten, die vom
+Betrag möglichst klein sind (gleichzeitig auf allen drei Achsen und über
+mehrere Samples hinweg). Wie können Sie dies erreichen? Welche Werte
+erreichen Sie?
+
+Hinweis: Sie können für Experimente auch ein Smartphone und die App
+``phyphox'' der RWTH Aachen verwenden. Was erwarten Sie, was Sie
+währenddessen auf den drei Gyroskopachsen messen? Was messen Sie?
+
+\textbf{Lösung}
+
+    \begin{itemize}
+\tightlist
+\item
+  Den Sensor flach auf eine Oberfläche zu legen hält die Werte neutral
+  und relativ konstant. Gerundet kommen die Achsen dann auf: x = 0g, y =
+  0g und z = 1g (wegen Erdbeschleunigung)
+\item
+  Neigungen, Stöße etc meiden
+\item
+  in bestimmten Intervallen Messwerte nehmen und evtl Mittelwerte bilden
+\item
+  (Messfehler durch Kalibrierung minimieren)
+\end{itemize}
+
+    \hypertarget{anwendungsentwicklung}{%
+\subsection{Anwendungsentwicklung}\label{anwendungsentwicklung}}
+
+Es sollen die beiden Anwendungen Joystick und Alarmanlage entwickelt
+werden. Erstellen Sie vorab zwei Kopien des Projektes, in denen Sie dann
+die Anwendungen entwickeln.
+
+    \hypertarget{joystick}{%
+\subsubsection{Joystick}\label{joystick}}
+
+Verändern Sie die Ausgabe Ihres Microcontroller-Programms derart, dass
+das Board als User- Interface genutzt werden kann. Geben Sie
+beispielsweise einen ``X''-Wert und einen ``Y''-Wert eines simulierten
+Joysticks aus. Beide Ausgabewerte sollen in waagerechter Ausrichtung des
+Boards 0 sein und mit Neigung um eine Achse in eine Richtung positiv und
+in die andere Richtung derselben Achse negativ werden. Bei ungefähr 45°
+Neigung soll der Wert 45 ausgegeben werden.
+
+Fügen Sie einen C-Codeauszug (wenige Zeilen) hier hinzu. Geben Sie die
+vollständige Source-Datei mit ab (ohne Projektdateien!).
+
+\textbf{Code-Snippet}
+
+\textbf{Der folgende Code wurde als allerletztes geschrieben und konnte
+leider aufgrund von Problemen mit dem ITS-Board nicht getestet werden!!}
+
+    \begin{verbatim}
+float calcAngle(int * axes, int * dim){ 
+    float res = 0.0f; 
+    int scal = 0; 
+    for(int i=0; i<3; i++){ 
+        scal = scal + axes[i] * dim[i]; 
+    } 
+
+    int sumSqr = (axes[0]*axes[0]) + (axes[1]*axes[1]) + (axes[2]*axes[2]); 
+    int sumDim = (dim[0]*dim[0]) + (dim[1]*dim[1]) + (dim[2]*dim[2]); 
+    
+    res = sqrt(sumSqr) * sqrt(sumDim); 
+    res = scalar/res; 
+    res = (acos(res)/PI) * 180; 
+    
+    return res; 
+} 
+
+//in main 
+int dim1[3]; 
+dim1[0] = 1; 
+dim1[1] = 0; 
+dim1[2] = 0; 
+
+int dim2[3]; 
+dim1[0] = 0; 
+dim1[1] = 1; 
+dim1[2] = 0; 
+
+while(1){ 
+    accelerometer.get_a_axes(axes); 
+    float x = calcAngles(axes, dim1); 
+    float y = calcAngles(axes, dim2); 
+    printf("x angle = %f, y angle = %f\n", x, y); 
+}
+\end{verbatim}
+
+    \hypertarget{alarmanlage}{%
+\subsubsection{Alarmanlage}\label{alarmanlage}}
+
+Konfigurieren Sie einen Trigger (Bewegungsschalter? Alarmanlage?), der
+bei Ruhelage des Boards 0 ist (oder keine Ausgabe generiert). Bei
+Bewegung aus der Ruhelage (entweder um/entlang allen Achsen oder nur
+um/entlang einer) soll eine 1 ausgegeben werden. Es soll weder
+``1''-Ausgaben in Ruhelage geben (``false positive'') noch
+``0''-Ausgaben bei Bewegung (``false negatives''). Fügen Sie einen
+C-Codeauszug (wenige Zeilen) hier hinzu. Geben Sie die vollständige
+Source-Datei mit ab (ohne Projektdateien!).
+
+\textbf{Code-Snippet}
+
+    \begin{verbatim}
+ float x_val, y_val, z_val, result;
+ unsigned long x2, y2, z2; //24 bit
+ acc_gyro.get_a_axes(axes);
+ accel_center_x = axes[0];
+ accel_center_y = axes[1];
+ accel_center_z = axes[2];
+
+
+
+while (1) { 
+    acc_gyro.get_a_axes(axes);
+    sprintf(s1, "%6d[acc/mg], %6d[acc/mg], %6d[acc/mg]", axes[0], axes[1], axes[2]); //LSM6DSO [acc/mg]    
+    acc_gyro.get_g_axes(axes);
+
+    sprintf(s2, "%6d[gyro/mdps], %6d[gyro/mdps], %6d[gyro/mdps]", axes[0], axes[1], axes[2]); //LSM6DSO[gyro/mdps]
+
+
+    acc_gyro.get_a_axes(axes); 
+
+    x_val = ((float)axes[0])-(float)accel_center_x; 
+    y_val = ((float)axes[1])-(float)accel_center_y; 
+    z_val = ((float)axes[2])-(float)accel_center_z; 
+    sprintf(string, "x = %f, y = %f", x_val, y_val); 
+
+    if(y_val <= (accel_center_y+error_interval_y) && y_val >= (accel_center_y-error_interval_y)){
+        accel_y_val = 0;
+    } else {
+        accel_y_val = 1;
+    }
+    if(x_val <= (accel_x_val+error_interval_x) && x_val >= (accel_x_val-error_interval_x)){
+        accel_x_val = 0;
+    } else {
+        accel_x_val = 1;
+    }
+    if(accel_x_val == 1 || accel_y_val == 1){
+        sprintf(string, "1"); 
+    } else {
+        sprintf(string, "0"); 
+    }
+    
+
+    lcdPrintlnS(string);
+
+    delay(15);
+}
+\end{verbatim}
+
+    \hypertarget{kommunikationsanalyse}{%
+\subsection{Kommunikationsanalyse}\label{kommunikationsanalyse}}
+
+Beschaffen Sie sich den Schaltplan des Nucleo-Boards IKS01A3 (siehe
+EMIL-/MS-Teams- Raum). Fragen Sie ggf. die Laborassistenz.
+
+An welchen Kontakten in ihrem Gesamtsystem können die Signale des
+I2C-Buses gemessen werden?
+
+\textbf{Anschlüsse}
+
+    \begin{itemize}
+\tightlist
+\item
+  SCL, SDA und GND am ITS-Board (I2C1, CN5)
+\end{itemize}
+
+    Untersuchen Sie den Zugriff auf das Who-Am-I-Register eines Sensors.
+Führen Sie eine Messung des Zugriffs mit dem Oszilloskop durch und
+betrachten Sie einen Bustransfer. Wie wird der Sensor hier angesprochen?
+Wie antwortet der Sensor? Fügen Sie einen ``Screen Shot'' der
+Übertragung hier mit ein. Analysieren Sie die Signale nach dem
+Protokollstandard und ergänzen Sie Ihre Ergebnisse (Bits etc.) in dem
+Signalverlauf.
+
+Hinweis: Es müssen ggf. mehrere Messungen durchgeführt werden und zu
+einem Screen Shot zusammengesetzt werden.
+
+\textbf{Protokollanalyse}
+
+    \begin{itemize}
+\tightlist
+\item
+  Beim Auslesen gibt das Who-Am-I Register gibt eine Sensor-ID zurück.
+  Bei dem LSM6DS0 wäre die ID beispielsweise 8, was auch bei der Messung
+  mit dem Oszilloskop erkennbar ist (s. Anhang ``Abb.1:
+  Oszilloskop/Messung mit GyroAcc-Sensor''). Diese ID steht im
+  Kontrollbyte der Übertragenen Daten.
+\end{itemize}
+
+    Welche Datenrate im Sinne von Messungen/s (Datenzeile/s) kann Ihr
+Gesamtsystem über die serielle Schnittstelle (RS232) in der
+Konfiguration aus der Teilaufgabe ``Analyse des Sensorverhaltens'' zum
+Host maximal übertragen? Kein Delay im Programm. Schätzen Sie den Wert
+begründet ab.
+
+\textbf{Datenrate}
+
+    \begin{itemize}
+\tightlist
+\item
+  Für 1024 Samples werden ca. 6.32sek gebraucht. Geschätzt können in
+  unserem System 162 Messungen pro Sekunde durchgeführt werden.
+\end{itemize}
+
+\textbf{Berechnung:}
+
+Timerwert1 bei Ruhelage des Sensors: 718.370.249ticks Timerwert1024 bei
+Ruhelage des Sensors: 1.287.358.751ticks
+
+Timerwert1024 - Timerwert1 = 568.988.502ticks DifferenzTimerwerte/90 =
+6.322.094,47us --\textgreater{} ungefähr 6.32s
+
+1024samples/6.32s = 162,03samples/s
+
+Timerwert162 bei Ruhelage = 807.361.601ticks
+
+Timerwert162 - Timerwert1 = 88.991.352ticks
+
+DifferenzTimerwerte/90 = 988.792,8us --\textgreater{} ungefähr 0,99s
+
+Also 162samples/s.
+
+    \hypertarget{feature-generation--selection}{%
+\subsection{Feature-Generation /
+-Selection}\label{feature-generation--selection}}
+
+    \hypertarget{data-buffer}{%
+\subsubsection{Data Buffer}\label{data-buffer}}
+
+Im Folgenden sollen Messwerte zunächst lokal auf dem Mikrocontroller
+gesammelt und dann getrennt weiterverarbeitet werden. Ändern Sie Ihr
+Mikrocontroller-Programm (am besten als neue C-Datei oder neues Projekt
+bzw. sichern Sie die C-Datei aus der letzten Aufgabe). Die Messwerte
+sollen in einem Puffer gesammelt werden, ohne diese gleich an den
+Host-PC zu übertragen. Die Puffergröße soll dabei (zur Compile-Zeit)
+konfigurierbar sein. Sie brauchen mindestens 1024 Samples von
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  den drei Beschleunigungsachsen des LIS2DW12,
+\item
+  den drei Beschleunigungsachsen des LSM6DS0,
+\item
+  den drei Gyroskopachsen des LSM6DS0,
+\item
+  den drei Magnetometerachsen des LIS2MDL
+\end{enumerate}
+
+(also insgesamt mindestens 1024 * 12 Integerwerte). Geben Sie danach den
+Inhalt des Pufferspeichers (alle mindestens 1024 12-dimensionalen
+Samples) in einem CSV-kompatiblen Format über die serielle Schnittstelle
+aus. Implementieren Sie beide Speicherzugriffe (Messwerte speichern und
+Daten ausgeben) innerhalb derselben Funktion (main oder eine andere).
+
+Entfernen Sie den Aufruf ``wait(1.5);'', falls noch nicht geschehen.
+Wiederholen Sie den Ablauf Datensammlung--Datenausgabe in einer
+Endlosschleife. Stellen Sie die Baudrate von mindestens 115.200 Baud
+ein. Fügen Sie einen Codeauszug hier hinzu-
+
+\textbf{Code Snippet}
+
+    \begin{verbatim}
+while (1) {
+    for(int i = 0; i < NUM_OF_SAMPLES; i++ ){
+            acc_gyro.get_a_axes(axes);
+            buffer[i][0] = axes[0];
+            buffer[i][1] = axes[1];
+            buffer[i][2] = axes[2];
+            acc_gyro.get_g_axes(axes);
+            buffer[i][3] = axes[0];
+            buffer[i][4] = axes[1];
+            buffer[i][5] = axes[2];
+            accelerometer.get_a_axes(axes);
+            buffer[i][6] = axes[0];
+            buffer[i][7] = axes[1];
+            buffer[i][8] = axes[2];
+            magnetometer.get_m_axes(axes);
+            buffer[i][9] = axes[0];
+            buffer[i][10]= axes[1];
+            buffer[i][11]= axes[2];
+       }
+
+       for(int i = 0; i < NUM_OF_SAMPLES; i++ ){
+            for (int n = 0; n < NUM_OF_VALUES-1; n++){
+                printf("%6d;", buffer[i][n]);
+            }
+            printf("%6d\r\n", buffer[i][NUM_OF_VALUES-1]);
+       }
+   }
+\end{verbatim}
+
+    Deklarieren Sie den Pufferspeicher einmal lokal (in der main- oder ggf.
+der eigenen Funktion) und ändern Sie die Größe auf 1.000.000 Samples.
+Kompilieren Sie das Programm. Ist dies möglich, was passiert? Wie groß
+ist der benötigte Speicher und wieviel Speicher steht in dem
+Mikrocontroller zur Verfügung?
+
+\textbf{Ergebnis}
+
+    \begin{itemize}
+\tightlist
+\item
+  Das Programm läuft nicht mehr. Das Array für die Werte ist 1024 x 4 x
+  12 Byte groß, was zu groß für den Stack ist.
+\end{itemize}
+
+    Deklarieren Sie den Pufferspeicher global und wiederholen Sie den
+Versuch, einen 1.000.000 Samples großen Zwischenspeicher zu verwenden.
+Was passiert nun?
+
+\textbf{Ergebnis}
+
+    \begin{itemize}
+\tightlist
+\item
+  Das Programm kann auch nicht mehr ausgeführt werden. Unser
+  Flashspeicher ist nur 2MB groß. Mit 1.000.000 x 4 x 12 Samples
+  benötigen wir 48000KBytes.
+\end{itemize}
+
+    \hypertarget{sampling-duration}{%
+\subsubsection{Sampling Duration}\label{sampling-duration}}
+
+Fügen Sie Ihrem Programm ein LED-Objekt hinzu. Alternativ zur mbed-
+Dokumentation (s.o.) können Sie sich auch das Nucleo-``Hello
+World''-Beispiel ``Blink LED'' anschauen. Fragen Sie ggf. Ihre
+Laborassistenz. Schalten Sie die ``LED1'' ein, bevor Sie Messdaten in
+den Pufferspeicher einlesen. Schalten Sie sie wieder aus, bevor Sie die
+Daten über die serielle Schnittstelle ausgeben. Messen Sie die Zeitdauer
+für das Einlesen der Daten mittels Oszilloskop.
+
+\textbf{Zeitdauer}
+
+    \begin{itemize}
+\tightlist
+\item
+  96.77 kHz
+\end{itemize}
+
+(s. Anhang ``Abb.2: Oszilloskop Zeit'')
+
+\begin{itemize}
+\tightlist
+\item
+  Das Signal wurde vom Gyroskop mit Beschleunigung ausgelesen.
+\end{itemize}
+
+    \hypertarget{timestaps}{%
+\subsubsection{Timestaps}\label{timestaps}}
+
+Nicht jeder Schleifenduchlauf ist gleich lang und oftmals benötigt mann
+eine genaue Information darüber wann die Daten (Sampling) erfasst
+wurden.
+
+Fügen Sie Ihrem Programm einen Timer hinzu. Suchen Sie Informationen
+hierzu und fragen Sie ggf. Ihre Laborassistenz.
+
+Erfassen Sie den Timerstand (in \(\mu s\)) vor Beginn des
+Messwertauslesens. Speichern Sie die einzelnen Zeitstempel mit im Puffer
+der Sensordaten. Geben Sie entsprechend zu Beginn jeder CSV-Zeile einmal
+den jeweiligen Zeitstempel mit aus.
+
+In welchem Bereich liegt die Zeitdifferenz von einem zum folgenden
+Sample? Ist der Wert konstant? Wenn ja, in welchem Bereich variiert er?
+Geben Sie den Datensatz und den Code mit ab.
+
+\textbf{Zeitanalyse}
+
+    \begin{verbatim}
+initTimer();
+int cnt = 0;
+while (1) {
+    
+    cnt = cnt +1;
+    
+    printf("\r\n\n\n\n\n\n");
+    printf("Messung: cnt = %d \r\n",cnt);
+    
+    GPIOD->ODR = 0x01;
+    for(int i = 0; i < NUM_OF_SAMPLES; i++ ){
+        acc_gyro.get_a_axes(axes);
+        buffer[i][0] = getTimeStamp();
+        buffer[i][1] = axes[0];
+        buffer[i][2] = axes[1];
+        buffer[i][3] = axes[2];
+        acc_gyro.get_g_axes(axes);
+        buffer[i][4] = axes[0];
+        buffer[i][5] = axes[1];
+        buffer[i][6] = axes[2];
+        accelerometer.get_a_axes(axes);
+        buffer[i][7] = axes[0];
+        buffer[i][8] = axes[1];
+        buffer[i][9] = axes[2];
+        magnetometer.get_m_axes(axes);
+        buffer[i][10] = axes[0];
+        buffer[i][11]= axes[1];
+        buffer[i][12]= axes[2];
+    }
+    
+    GPIOD->ODR = 0x00;
+    
+    
+    for(int i = 0; i < NUM_OF_SAMPLES; i++ ){
+        for (int n = 0; n < NUM_OF_VALUES-1; n++){
+            printf("%6d;", buffer[i][n]);
+        }
+        printf("%6d\r\n", buffer[i][NUM_OF_VALUES-1]);
+    }
+}
+\end{verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} import of the Sensor data}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{samples.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{time\PYZus{}diff} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{1023}\PY{p}{)}
+
+\PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
+\PY{n}{j} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{np}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{time\PYZus{}diff}\PY{p}{)}\PY{p}{:}
+    \PY{n}{time\PYZus{}diff}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{data}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{90}
+    \PY{n}{i}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+    \PY{n}{j}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Set the figure size (10 inches wide, 6 inches tall)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{time\PYZus{}diff}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Messung aus Datensatz 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[ Messungsindex ]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[ µs ]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}, frame=single, framerule=2mm, rulecolor=\color{outerrorbackground}]
+\textcolor{ansi-red-intense}{\textbf{---------------------------------------------------------------------------}}
+\textcolor{ansi-red-intense}{\textbf{NameError}}                                 Traceback (most recent call last)
+Cell \textcolor{ansi-green-intense}{\textbf{In[4], line 16}}
+\textcolor{ansi-green}{     13}     j\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{+}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{1}
+\textcolor{ansi-green}{     15} plt\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}figure(figsize\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{=}(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{10}, \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{6}))  \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{95,135,135}}{\# Set the figure size (10 inches wide, 6 inches tall)}
+\textcolor{ansi-green-intense}{\textbf{---> 16}} plt\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}plot(\setlength{\fboxsep}{0pt}\colorbox{ansi-yellow}{x\strut}, time\_diff[x], \def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{'}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{.}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{'})
+\textcolor{ansi-green}{     17} plt\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}title(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{"}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{Messung aus Datensatz 1}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{"})
+\textcolor{ansi-green}{     18} plt\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{98,98,98}}{.}xlabel(\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{"}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{[ Messungsindex ]}\def\tcRGB{\textcolor[RGB]}\expandafter\tcRGB\expandafter{\detokenize{175,0,0}}{"})
+
+\textcolor{ansi-red-intense}{\textbf{NameError}}: name 'x' is not defined
+    \end{Verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+<Figure size 1000x600 with 0 Axes>
+    \end{Verbatim}
+
+    
+    Bei ca Sample 350 gibt es einen Aussetzer.
+
+    \hypertarget{beispieldatensuxe4tze-fuxfcr-klassifikationen}{%
+\subsection{Beispieldatensätze für
+Klassifikationen}\label{beispieldatensuxe4tze-fuxfcr-klassifikationen}}
+
+Für das folgende Praktikum benötigen wir mehrere Testdatensätze (siehe
+unten) (jeweils mindestens 1024 direkt nacheinander aufgenommene Samples
+lang). Mit Hilfe der LED kann dabei beobachtet werden, wie lange das
+Füllen des Puffers dauert, so dass die Bewegungen jeweils immer
+innerhalb dieser Zeit abgeschlossen werden. Nehmen Sie folgende
+Datensätze auf:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Nucleo-Board in Ruhelage auf dem Tisch
+\item
+  Nucleo-Board in Ruhelage, dann Drehung zum Aufrichten, Nucleo-Board in
+  Ruhe stehend, Drehung zurück in Liegeposition und wieder in Ruhelage
+\item
+  Nucleo-Board in Ruhelage, gradlinige Bewegung in eine Richtung hin und
+  wieder zurück
+\item
+  Nucleo-Board in Ruhelage, dann mehrmals gradlinige Bewegung in eine
+  Richtung und wieder zurück
+\item
+  Nucleo-Board in Ruhelage, dann unterschiedliche gradlinige und
+  rotatorische Bewegungen -- aber alle ``liegend'' auf dem Tisch, das
+  heißt in einer Ebene
+\item
+  Nucleo-Board in Ruhelage, dann diverse unterschiedliche Bewegungen
+  (gradlinig und rotatorisch) über alle drei Raumachsen
+\end{enumerate}
+
+Schauen Sie sich den ersten und den zweiten aufgenommenen Datensatz
+(nach der Liste oben) an. Verhalten sich alle Sensorwerte so, wie Sie es
+erwartet haben? Wenn nein, welche nicht? Haben Sie eine Vermutung warum
+nicht? Wenn ja, warum sehen die Messkurven gerade so aus?
+
+Fügen Sie Ihrem Protokoll zwei interessante Plots hinzu. Geben Sie an,
+an welchen Stellen/in welchen Bereichen welche Bewegung ausgeführt
+wurde.
+
+Hinweis: Dokumentieren/skizzieren Sie bei den komplexeren Bewegungen
+(3./4./5.) Ihre Bewegungsmuster, da später die Daten den
+Bewegungsabschnitten zugeordnet werden sollen.
+
+\begin{itemize}
+\item
+  Im Datensatz1 schlagen die Achsen gegen Sample 50 und 550 aus. Auf den
+  Achsen ist ein Rauschen zu erkennen wegen Umgebungsstörungen, wie z.B.
+  Vibrationen.
+\item
+  Im Datensatz2 schlägt die Achse bei 200 Samples aus, da der Sensor in
+  der Bewegung nicht vollständig stabilisiert ist. So lassen sich auch
+  die weiteren Unebenheiten in allen Achsen erklären.
+\end{itemize}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Datensätze/Datensatz1.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Plot of the LSM6DS0}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Datensatz 1: Beschleunigungsachsen des LSM6DS0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[ acc/mg ]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{311}\PY{p}{)} 
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZhy{}Achse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{312}\PY{p}{)} 
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y\PYZhy{}Achse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{313}\PY{p}{)} 
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Z\PYZhy{}Achse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+
+
+
+\PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Datensätze/Datensatz2.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Plot of the LSM6DS0}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Datensatz 2: Beschleunigungsachsen des LSM6DS0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[ acc/mg ]}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{311}\PY{p}{)} 
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X\PYZhy{}Achse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{312}\PY{p}{)} 
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y\PYZhy{}Achse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{313}\PY{p}{)} 
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Z\PYZhy{}Achse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
