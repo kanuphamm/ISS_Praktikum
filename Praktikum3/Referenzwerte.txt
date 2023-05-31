@@ -1,0 +1,8 @@
+25cm: 1,98V. 0,065A
+35cm: 1,65V. 0,061A
+45cm: 1,32V. 0,058A
+55cm: 991mV. 0,054A
+65cm: 672mV. 0,051A
+75cm: 374mV. 0,042A
+
+Datensatz zusammen gemessen: Elmas Berivan, Khanh Nhu Pham, Jonas Wiebers
